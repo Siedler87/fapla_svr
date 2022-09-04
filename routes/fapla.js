@@ -1,13 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const programmingLanguages = require('../services/fapla');
+const fapla = require('../services/fapla');
 
 /* GET programming languages. */
 router.get('/', async function(req, res, next) {
   try {
-    res.json(await programmingLanguages.getMultiple(req.query.page));
+    res.json(await fapla.getMultiple(req.query.page));
   } catch (err) {
-    console.error(`Error while getting programming languages `, err.message);
+    console.error(`Error while getting fapla user `, err.message);
+    next(err);
+  }
+});
+
+/* POST programming language */
+router.post('/', async function(req, res, next) {
+  try {
+    res.json(await fapla.create(req.body));
+  } catch (err) {
+    console.error(`Error while creating fapla user`, err.message);
     next(err);
   }
 });
