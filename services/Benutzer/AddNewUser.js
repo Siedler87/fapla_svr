@@ -1,6 +1,6 @@
-const db = require('./db');
-const helper = require('../helper');
-const config = require('../config');
+const db = require('../db');
+const helper = require('../../helper');
+const config = require('../../config');
 
 // current date
 let date_ob = new Date();

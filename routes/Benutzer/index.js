@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const AddNewUser = require('../services/AddNewUser');
+const AddNewUser = require('../../services/Benutzer/AddNewUser');
 
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
-router.post('/', async function(req, res, next) {
+router.post('/AddNewUser', async function(req, res, next) {
   try {
     res.json(await AddNewUser.create(req.body));
   } catch (err) {
@@ -14,3 +14,4 @@ router.post('/', async function(req, res, next) {
 });
 
 module.exports = router;
+
