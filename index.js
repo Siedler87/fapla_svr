@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const faplaRouter = require("./routes/fapla");
+const AddNewUserRouter = require("./routes/AddNewUser");
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -11,7 +11,7 @@ app.use(
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
-app.use("/fapla", faplaRouter);
+app.use("/AddNewUser", AddNewUserRouter);
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
