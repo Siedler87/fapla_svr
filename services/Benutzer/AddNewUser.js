@@ -12,6 +12,8 @@ async function create(AddNewUser){
   let seconds = date_ob.getSeconds();
   var CurrentTimestamp = "'"+year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds+"'";
 
+  console.log(CurrentTimestamp);
+
   var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `LetzterLogin`, `Hintergrundfarbe`) VALUES (?, ?, ?, ?, ?, ?, ?, ? )';
   const result = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim(), AddNewUser.email.trim(), AddNewUser.passwort.trim(), CurrentTimestamp, AddNewUser.hintergrundfarbe.trim()], function (err, result) {
     if (err) {
