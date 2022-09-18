@@ -17,8 +17,8 @@ async function create(AddNewUser){
   const result = await db.query(
     `INSERT INTO Benutzer (Accountname, Vorname, Nachname, Geburtsdatum, Email, Passwort, LetzterLogin, Hintergrundfarbe)
     VALUES (
-      ${AddNewUser.accountname},${AddNewUser.vorname},${AddNewUser.nachname},${AddNewUser.geburtsdatum},${AddNewUser.email},
-      ${AddNewUser.passwort}, ${CURRENT_TIMESTAMP}, ${AddNewUser.hintergrundfarbe})`
+      '${AddNewUser.accountname}','${AddNewUser.vorname}','${AddNewUser.nachname}','${AddNewUser.geburtsdatum}','${AddNewUser.email}',
+      '${AddNewUser.passwort}', '${CURRENT_TIMESTAMP}', '${AddNewUser.hintergrundfarbe})'`
   );
 
   let message = 'Error in creating user entry';
