@@ -15,7 +15,7 @@ var CurrentTimestamp = "'"+year + "-" + month + "-" + date + " " + hours + ":" +
 async function create(AddNewUser){
 
   var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `LetzterLogin`, `Hintergrundfarbe`) VALUES (?, ?, ?, ?, ?, ?, ?, ? )';
-  const result = await db.query(sql, [AddNewUser.Accountname, AddNewUser.Vorname, AddNewUser.Nachname, AddNewUser.Geburtsdatum, AddNewUser.Email, AddNewUser.Passwort, CurrentTimestamp, AddNewUser.Hintergrundfarbe], function (err, result) {
+  const result = await db.query(sql, [AddNewUser.Accountname.trim(), AddNewUser.Vorname.trim(), AddNewUser.Nachname.trim(), AddNewUser.Geburtsdatum.trim(), AddNewUser.Email.trim(), AddNewUser.Passwort.trim(), CurrentTimestamp, AddNewUser.Hintergrundfarbe.trim()], function (err, result) {
     if (err) {
       let message = 'Error';
       return {message};
