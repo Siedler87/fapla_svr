@@ -23,6 +23,7 @@ async function create(AddNewUser){
   
   });
   if (result.affectedRows) {
+    console.log(result);
     message = 'Success';
   }
   return {message};
