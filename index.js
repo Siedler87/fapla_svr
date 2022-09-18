@@ -1,13 +1,19 @@
-const express = require("express");
+const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 3000;
 const BenutzerRouter = require("./routes/Benutzer/index.js");
+var corsOptions = {
+  origin: '*',
+  credentials: true };
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
+
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
