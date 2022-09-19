@@ -4,7 +4,8 @@ async function create(AddNewUser){
 
   // current date
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-
+  console.log(CurrentTimestamp);
+  CurrentTimestamp.setHours(CurrentTimestamp.getHours() + 2);
   console.log(CurrentTimestamp);
 
   var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `LetzterLogin`, `Hintergrundfarbe`) VALUES (?, ?, ?, ?, ?, ?, ?, ? )';
@@ -16,7 +17,6 @@ async function create(AddNewUser){
   
   });
   if (result.affectedRows) {
-    console.log(result);
     message = 'Success';
   }
   return {message};
