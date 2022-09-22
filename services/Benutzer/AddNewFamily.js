@@ -13,9 +13,27 @@ async function create(AddNewFamily){
   
   });
   if (result.affectedRows) {
-    message = 'Success';
+    var sql = 'SELECT `FamID` FROM `Familien` WHERE `Accountname` = ?';
+    const result = await db.query(sql, [AddNewFamily.accountname.trim()], function (err, result) {
+      if (err) {
+        let message = 'Error';
+        return {message};
+      };
+
+    });
+    
+
+      var sql = 'INSERT INTO FamilienAdmin(`FamID`, `BenID`) VALUES (?,?)';
+      const subresult = await db.query(sql, [result[0].FamID, AddNewFamily.benid.trim()], function (err, subresult) {
+        if (err) {
+          let message = 'Error';
+          return {message};
+        };
+      });
+      let message = 'Success';
+      return {message};
+
   }
-  return {message};
 
 }
 

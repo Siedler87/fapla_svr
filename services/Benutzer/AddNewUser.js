@@ -14,10 +14,16 @@ async function create(AddNewUser){
   
   });
   if (result.affectedRows) {
-    message = 'Success';
+    var sql = 'SELECT `BenID` FROM `Benutzer` WHERE `Accountname` = ?';
+    const result = await db.query(sql, [AddNewUser.accountname.trim()], function (err, result) {
+      if (err) {
+        let message = 'Error';
+        return {message};
+      };
+    });
+    return (result[0].BenID);
+    
   }
-  return {message};
-
 }
 
 module.exports = {
