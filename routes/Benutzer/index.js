@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const AddNewUser = require('../../services/Benutzer/AddNewUser');
-const AddNewFamily = require('../../services/Benutzer/AddNewFamily');
-
+const GetUserAccountnames = require('../../services/Benutzer/GetUserAccountnames');
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
 router.post('/AddNewUser', async function(req, res, next) {
@@ -14,12 +13,12 @@ router.post('/AddNewUser', async function(req, res, next) {
   }
 });
 
-/* AddNewFamily - neue Familie eintragen */
-router.post('/AddNewFamily', async function(req, res, next) {
+/* GetUserAccountnames - alle vorhandenen Accountnames von Benutzer abfragen */
+router.get('/GetUserAccountnames', async function(req, res, next) {
   try {
-    res.json(await AddNewFamily.create(req.body));
+    res.json(await GetUserAccountnames.GetUserAccountnames());
   } catch (err) {
-    console.error(`Error while creating AddNewFamily`, err.message);
+    console.error(`Error while fetching GetUserAccountnames`, err.message);
     next(err);
   }
 });

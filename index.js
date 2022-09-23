@@ -3,6 +3,7 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 const BenutzerRouter = require("./routes/Benutzer/index.js");
+const FamilienRouter = require("./routes/Familien/index.js");
 var corsOptions = {
   origin: '*',
   credentials: true };
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
   res.json({ message: "ok" });
 });
 app.use("/Benutzer", BenutzerRouter);
+app.use("/Familien", FamilienRouter);
 /* Error handler middleware */
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
