@@ -1,6 +1,6 @@
 const db = require('../db');
 
-async function create(AddNewUser){
+async function AddNewUser(AddNewUser){
 
   // current date
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -27,5 +27,5 @@ async function create(AddNewUser){
 }
 
 module.exports = {
-  create
+  AddNewUser
 }
