@@ -10,7 +10,7 @@ async function GetLoginFamily(GetLoginFamily){
     };
   });
   if (result[0].Passwort == GetLoginFamily.passwort.trim()){
-      let message = 'Login_sucess';
+      let message = 'Login_success';
       return {message};
   } else {
     let message = 'Password_wrong';

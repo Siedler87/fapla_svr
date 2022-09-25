@@ -20,7 +20,7 @@ async function GetLoginUser(GetLoginUser){
           return {message};
         };
       });
-      let message = 'Login_sucess';
+      let message = 'Login_success';
       return {message};
   } else {
     let message = 'Password_wrong';
