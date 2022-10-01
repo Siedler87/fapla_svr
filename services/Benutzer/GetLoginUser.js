@@ -14,6 +14,7 @@ async function GetLoginUser(GetLoginUser){
     };
   });
     console.log(ergebnis.Passwort);
+    console.log(ergebnis.length);
     if (ergebnis.Passwort == null || ergebnis.Passwort == undefined)  {
       let message = 'Account_not_found';
       return {message};
