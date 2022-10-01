@@ -13,7 +13,7 @@ async function GetLoginUser(GetLoginUser){
       return {message};
     };
   });
-    if (!ergebnis) {
+    if (ergebnis == null) {
       let message = 'Account_not_found';
       return {message};
     } else {
