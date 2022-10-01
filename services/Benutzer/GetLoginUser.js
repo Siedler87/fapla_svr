@@ -4,7 +4,6 @@ async function GetLoginUser(GetLoginUser){
 
   // current date
 
-  console.log("Objekt: "+GetLoginUser);
   console.log("Accountname: "+GetLoginUser.accountname.trim());
   console.log("Passwort: "+GetLoginUser.passwort.trim());
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
@@ -18,7 +17,7 @@ async function GetLoginUser(GetLoginUser){
     };
     console.log("Ergebnis: "+ergebnis);
     console.log("Ergebnis: "+ergebnis[0]);
-    if (ergebnis == null) {
+    if (ergebnis) {
       console.log("Account nicht gefunden");
       let message = 'Account_not_found';
       return {message};
