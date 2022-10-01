@@ -20,7 +20,7 @@ async function GetLoginUser(GetLoginUser){
   });
     console.log("Ergebnis: "+ergebnis);
     console.log("Ergebnis: "+ergebnis[0]);
-    if (ergebnis) {
+    if (!ergebnis) {
       console.log("Account nicht gefunden");
       let message = 'Account_not_found';
       return {message};
