@@ -9,7 +9,7 @@ async function GetLoginFamily(GetLoginFamily){
       return {message};
     };
   });
-  if (ergebnis == null || ergebnis === undefined) {
+  if (ergebnis.length < 1) {
     let message = 'Account_not_found';
     return {message};
   } else {
