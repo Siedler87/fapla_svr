@@ -9,6 +9,7 @@ async function GetLoginUser(GetLoginUser){
   console.log("Passwort: "+GetLoginUser.passwort.trim());
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
   var sql = 'SELECT `Passwort` FROM `Benutzer` WHERE `Accountname` = "?";';
+  onsole.log(sql+GetLoginUser.accountname.trim());
   const result = await db.query(sql, [GetLoginUser.accountname.trim()], function (err, result) {
     if (err) {
       console.log(err);
@@ -16,6 +17,7 @@ async function GetLoginUser(GetLoginUser){
       return {message};
     };
   });
+  console.log("Ergebnis: "+result);
   if (result == null) {
     console.log("Account nicht gefunden");
     let message = 'Account_not_found';
