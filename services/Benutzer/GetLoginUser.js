@@ -17,6 +17,7 @@ async function GetLoginUser(GetLoginUser){
       let message = 'Error';
       return {message};
     };
+  });
     console.log("Ergebnis: "+result);
     console.log("Ergebnis: "+result[0]);
     console.log("Ergebnis: "+ergebnis);
@@ -47,9 +48,6 @@ async function GetLoginUser(GetLoginUser){
         return {message};
       }
     }
-    
-    
-  });
   console.log("nach SQL Klammer");
   
 }
