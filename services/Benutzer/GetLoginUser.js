@@ -48,9 +48,9 @@ async function GetLoginUser(GetLoginUser){
       }
     }
     
-    console.log("nach SQL Klammer");
+    
   });
-  
+  console.log("nach SQL Klammer");
   
 }
 
