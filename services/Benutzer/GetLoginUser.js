@@ -12,10 +12,14 @@ async function GetLoginUser(GetLoginUser){
   const result = await db.query(sql, [GetLoginUser.accountname.trim()], function (err, result) {
     if (err) {
       console.log(err);
-      let message = 'Account_not_found';
+      let message = 'Error';
       return {message};
     };
   });
+  if (result == null) {
+    let message = 'Account_not_found';
+    return {message};
+  }
   console.log("Passwort in DB: "+result[0].Passwort);
   if (result[0].Passwort == GetLoginUser.passwort.trim()){
       var sql = 'UPDATE `Benutzer` SET `LetzterLogin`=? WHERE `Accountname`="?"';
