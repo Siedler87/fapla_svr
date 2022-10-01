@@ -13,7 +13,7 @@ async function GetLoginUser(GetLoginUser){
       return {message};
     };
   });
-    if (ergebnis == null || ergebnis === undefined || ergebnis[0].Passwort === null || ergebnis[0].Passwort === undefined)  {
+    if (ergebnis == null || ergebnis == undefined || ergebnis[0].Passwort == null || ergebnis[0].Passwort == undefined)  {
       let message = 'Account_not_found';
       return {message};
     } else {
