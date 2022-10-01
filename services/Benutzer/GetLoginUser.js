@@ -9,7 +9,7 @@ async function GetLoginUser(GetLoginUser){
   console.log("Passwort: "+GetLoginUser.passwort.trim());
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
   var sql = 'SELECT `Passwort` FROM `Benutzer` WHERE `Accountname` = "?";';
-  onsole.log(sql+GetLoginUser.accountname.trim());
+  console.log(sql+GetLoginUser.accountname.trim());
   const result = await db.query(sql, [GetLoginUser.accountname.trim()], function (err, result) {
     if (err) {
       console.log(err);
