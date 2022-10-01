@@ -24,16 +24,16 @@ async function GetLoginUser(GetLoginUser){
       if (ergebnis[0].Passwort == GetLoginUser.passwort.trim()){
           var sql = 'UPDATE `Benutzer` SET `LetzterLogin`=? WHERE `Accountname`=?';
           console.log(CurrentTimestamp);
-          const subresult = db.query(sql, [CurrentTimestamp, GetLoginUser.accountname.trim()], function (err, result) {
+          const subresult = await db.query(sql, [CurrentTimestamp, GetLoginUser.accountname.trim()], function (err, result) {
             if (err) {
               let message = 'Error';
               console.log(message);
               return {message};
             };
-            let message = 'Login_success';
-            console.log(message);
-            return {message};
           });
+          let message = 'Login_success';
+          console.log(message);
+          return {message};
 
       } else {
         let message = 'Password_wrong';
