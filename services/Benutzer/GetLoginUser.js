@@ -8,7 +8,7 @@ async function GetLoginUser(GetLoginUser){
   console.log("Accountname: "+GetLoginUser.accountname.trim());
   console.log("Passwort: "+GetLoginUser.passwort.trim());
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  var sql = 'SELECT "Passwort" FROM "Benutzer" WHERE "Accountname" =  ?;';
+  var sql = 'SELECT Passwort FROM Benutzer WHERE Accountname =  "?";';
   console.log(sql+GetLoginUser.accountname.trim());
   const result = await db.query(sql, [GetLoginUser.accountname.trim()], function (err, result) {
     if (err) {
@@ -18,6 +18,7 @@ async function GetLoginUser(GetLoginUser){
     };
   });
   console.log("Ergebnis: "+result);
+  console.log("Ergebnis: "+result[0]);
   if (result == null) {
     console.log("Account nicht gefunden");
     let message = 'Account_not_found';
@@ -26,7 +27,7 @@ async function GetLoginUser(GetLoginUser){
 
     console.log("Passwort in DB: "+result[0].Passwort);
     if (result[0].Passwort == GetLoginUser.passwort.trim()){
-        var sql = 'UPDATE "Benutzer" SET "LetzterLogin"=? WHERE "Accountname"=?';
+        var sql = 'UPDATE Benutzer SET LetzterLogin=? WHERE Accountname="?"';
         const subresult = await db.query(sql, [CurrentTimestamp, GetLoginUser.accountname.trim()], function (err, result) {
           if (err) {
             let message = 'Error';
