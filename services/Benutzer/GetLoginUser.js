@@ -13,13 +13,12 @@ async function GetLoginUser(GetLoginUser){
       return {message};
     };
   });
-    console.log(ergebnis.Passwort);
     console.log(ergebnis.length);
-    if (ergebnis.Passwort == null || ergebnis.Passwort == undefined)  {
+    if (ergebnis.length < 1)  {
       let message = 'Account_not_found';
       return {message};
     } else {
-  
+      console.log(ergebnis[0].Passwort);  
       if (ergebnis[0].Passwort == GetLoginUser.passwort.trim()){
           var sql = 'UPDATE `Benutzer` SET `LetzterLogin`=? WHERE `Accountname`=?';
           const subresult = await db.query(sql, [CurrentTimestamp, GetLoginUser.accountname.trim()], function (err, result) {
