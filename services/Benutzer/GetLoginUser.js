@@ -15,6 +15,8 @@ async function GetLoginUser(GetLoginUser){
       let message = 'Error';
       return {message};
     };
+    console.log("Ergebnis: "+result);
+    console.log("Ergebnis: "+result[0]);
     console.log("Ergebnis: "+ergebnis);
     console.log("Ergebnis: "+ergebnis[0]);
     if (ergebnis) {
