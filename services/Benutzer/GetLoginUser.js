@@ -29,11 +29,11 @@ async function GetLoginUser(GetLoginUser){
           let benid = ergebnis[0].BenID;
           let vorname = ergebnis[0].Vorname;
           let nachname = ergebnis[0].Nachname;
-          let geburtstdatum = ergebnis[0].Geburtsdatum;
+          let geburtsdatum = ergebnis[0].Geburtsdatum;
           let email = ergebnis[0].Email;
           let hintergrundfarbe = ergebnis[0].Hintergrundfarbe;
           let bildid = ergebnis[0].BildID;
-          return {message, benid, vorname, nachname, geburtstdatum, email, hintergrundfarbe, bildid};
+          return {message, benid, vorname, nachname, geburtsdatum, email, hintergrundfarbe, bildid};
 
       } else {
         let message = 'Password_wrong';
