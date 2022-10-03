@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const AddNewUser = require('../../services/Benutzer/AddNewUser');
+const UpdateUser = require('../../services/Benutzer/UpdateUser');
 const GetUserAccountnames = require('../../services/Benutzer/GetUserAccountnames');
 const GetLoginUser = require('../../services/Benutzer/GetLoginUser');
 
