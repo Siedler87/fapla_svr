@@ -35,7 +35,7 @@ async function UpdateUser(UpdateUser){
       return {message};
     }
   } 
-  if (UpdateUser.benid != null && UpdateUser.passwort != null){
+  if (UpdateUser.benid != null && UpdateUser.passwort != null && UpdateUser.newpasswort != null){
       var sql = 'SELECT `Passwort` FROM `Benutzer` WHERE `BenID` =  ?';
       const ergebnis = await db.query(sql, [UpdateUser.benid], async function (err, result) {
         if (err) {
@@ -50,7 +50,7 @@ async function UpdateUser(UpdateUser){
         } else {
           if (ergebnis[0].Passwort == UpdateUser.passwort.trim()){
               var sql = 'UPDATE `Benutzer` SET `Passwort`=? WHERE `BenID`=?';
-              const subergebnis = await db.query(sql, [UpdateUser.passwort.trim(), UpdateUser.benid], function (err, result) {
+              const subergebnis = await db.query(sql, [UpdateUser.newpasswort.trim(), UpdateUser.benid], function (err, result) {
                 if (err) {
                   let message = 'Error';
                   return {message};
