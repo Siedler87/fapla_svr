@@ -34,5 +34,15 @@ router.post('/GetLoginUser', async function(req, res, next) {
   }
 });
 
+/* UpdateUser - Hauptnutzer aktualisieren */
+router.post('/Update', async function(req, res, next) {
+  try {
+    res.json(await UpdateUser.UpdateUser(req.body));
+  } catch (err) {
+    console.error(`Error while creating UpdateUser`, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;
 
