@@ -22,7 +22,7 @@ async function UpdateUser(UpdateUser){
       });
       let message = 'Update_success';
       let benid = subergebnis[0].BenID;
-      let accountname = subergebnis[0].accountname;
+      let accountname = subergebnis[0].Accountname;
       let vorname = subergebnis[0].Vorname;
       let nachname = subergebnis[0].Nachname;
       let geburtsdatum = subergebnis[0].Geburtsdatum;
@@ -84,7 +84,7 @@ async function UpdateUser(UpdateUser){
       });
       let message = 'Update_success';
       let benid = subergebnis[0].BenID;
-      let accountname = subergebnis[0].accountname;
+      let accountname = subergebnis[0].Accountname;
       let vorname = subergebnis[0].Vorname;
       let nachname = subergebnis[0].Nachname;
       let geburtsdatum = subergebnis[0].Geburtsdatum;
