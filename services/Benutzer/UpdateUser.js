@@ -5,7 +5,7 @@ async function UpdateUser(UpdateUser){
   // Hauptbenutzer aktualisieren
   // Vorname, Nachname, Geburtsdatum, Email
   if (UpdateUser.benid != null && UpdateUser.vorname != null && UpdateUser.nachname != null && UpdateUser.geburtsdatum != null && UpdateUser.email != null) {
-    var sql = 'UPDATE `Benutzer` SET `Vorname` = ?, `Nachname` = ? , `Geburtsdatum` = ?, `Email` = ?  WHERE `BenID`= ?);';
+    var sql = 'UPDATE `Benutzer` SET `Vorname` = ?, `Nachname` = ? , `Geburtsdatum` = ?, `Email` = ?  WHERE `BenID`= ?)';
     const ergebnis = await db.query(sql, [UpdateUser.vorname.trim(), UpdateUser.nachname.trim(), UpdateUser.geburtsdatum.trim(), UpdateUser.email.trim(), UpdateUser.benid], function (err, result) {
       if (err) {
         let message = 'Error';
@@ -13,7 +13,7 @@ async function UpdateUser(UpdateUser){
       };
     });
     if (ergebnis.affectedRows) {
-      var sql = 'SELECT `BenID`,`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `Hintergrundfarbe`, `BildID` FROM `Benutzer` WHERE `BenID`= ?;';
+      var sql = 'SELECT `BenID`,`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `Hintergrundfarbe`, `BildID` FROM `Benutzer` WHERE `BenID`= ?';
       const subergebnis = await db.query(sql, [UpdateUser.benid], function (err, result) {
         if (err) {
           let message = 'Error';
@@ -36,7 +36,7 @@ async function UpdateUser(UpdateUser){
     }
   } 
   if (UpdateUser.benid != null && UpdateUser.passwort != null){
-      var sql = 'SELECT `Passwort` FROM `Benutzer` WHERE `BenID` =  ?;';
+      var sql = 'SELECT `Passwort` FROM `Benutzer` WHERE `BenID` =  ?';
       const ergebnis = await db.query(sql, [UpdateUser.benid], async function (err, result) {
         if (err) {
           console.log(err);
@@ -70,7 +70,7 @@ async function UpdateUser(UpdateUser){
   // Nebenbenutzer aktualisieren
   // Vorname, Nachname, Geburtsdatum - keine Email!
   if (UpdateUser.benid != null && UpdateUser.vorname != null && UpdateUser.nachname != null && UpdateUser.geburtsdatum != null && UpdateUser.email == null) {
-    var sql = 'UPDATE `Benutzer` SET `Vorname` = ?, `Nachname` = ? , `Geburtsdatum` = ? WHERE `BenID`= ?);';
+    var sql = 'UPDATE `Benutzer` SET `Vorname` = ?, `Nachname` = ? , `Geburtsdatum` = ? WHERE `BenID`= ?)';
     const ergebnis = await db.query(sql, [UpdateUser.vorname.trim(), UpdateUser.nachname.trim(), UpdateUser.geburtsdatum.trim(), UpdateUser.benid], function (err, result) {
       if (err) {
         let message = 'Error';
@@ -78,7 +78,7 @@ async function UpdateUser(UpdateUser){
       };
     });
     if (ergebnis.affectedRows) {
-      var sql = 'SELECT `BenID`, `Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Hintergrundfarbe`, `BildID` FROM `Benutzer` WHERE `BenID`= ?;';
+      var sql = 'SELECT `BenID`, `Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Hintergrundfarbe`, `BildID` FROM `Benutzer` WHERE `BenID`= ?';
       const subergebnis = await db.query(sql, [UpdateUser.benid], function (err, result) {
         if (err) {
           let message = 'Error';
