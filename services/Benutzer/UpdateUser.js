@@ -30,7 +30,10 @@ async function UpdateUser(UpdateUser){
       let hintergrundfarbe = subergebnis[0].Hintergrundfarbe;
       let bildid = subergebnis[0].BildID;
       return {message, benid, accountname, vorname, nachname, geburtsdatum, email, hintergrundfarbe, bildid};
-    }  
+    } else  {
+      let message = 'Account_not_found';
+      return {message};
+    }
   } 
   if (UpdateUser.benid != null && UpdateUser.passwort != null){
       var sql = 'SELECT `Passwort` FROM `Benutzer` WHERE `BenID` =  ?;';
@@ -91,7 +94,10 @@ async function UpdateUser(UpdateUser){
       let hintergrundfarbe = subergebnis[0].Hintergrundfarbe;
       let bildid = subergebnis[0].BildID;
       return {message, benid, accountname, vorname, nachname, geburtsdatum, hintergrundfarbe, bildid};
-    }  
+    } else  {
+      let message = 'Account_not_found';
+      return {message};
+    }
   }
 
   // bei falschen Parameten
