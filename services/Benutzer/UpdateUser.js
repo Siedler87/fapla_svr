@@ -44,7 +44,8 @@ async function UpdateUser(UpdateUser){
           let message = 'Error';
           return {message};
         };
-      
+      })
+        console.log("Passwort DB Abfrage fertig");
         if (ergebnis.length < 1)  {
           console.log("kein Account gefunden");
           let message = 'Account_not_found';
@@ -69,8 +70,7 @@ async function UpdateUser(UpdateUser){
                 console.log(message);
                 return {message};
               }
-          }  
-        });
+          }  ;
   } 
   // Nebenbenutzer aktualisieren
   // Vorname, Nachname, Geburtsdatum - keine Email!
