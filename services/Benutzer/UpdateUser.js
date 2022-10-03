@@ -36,6 +36,7 @@ async function UpdateUser(UpdateUser){
     }
   } 
   if (UpdateUser.benid != null && UpdateUser.passwort != null && UpdateUser.newpasswort != null){
+      console.log("Starte Passwort Funktion");
       var sql = 'SELECT `Passwort` FROM `Benutzer` WHERE `BenID` =  ?';
       const ergebnis = await db.query(sql, [UpdateUser.benid], async function (err, result) {
         if (err) {
@@ -45,10 +46,12 @@ async function UpdateUser(UpdateUser){
         };
       
         if (ergebnis.length < 1)  {
+          console.log("kein Account gefunden");
           let message = 'Account_not_found';
           return {message};
         } else {
           if (ergebnis[0].Passwort == UpdateUser.passwort.trim()){
+            console.log("Passwort falsch");
               var sql = 'UPDATE `Benutzer` SET `Passwort`=? WHERE `BenID`=?';
               const subergebnis = await db.query(sql, [UpdateUser.newpasswort.trim(), UpdateUser.benid], function (err, result) {
                 if (err) {
@@ -58,10 +61,12 @@ async function UpdateUser(UpdateUser){
               });
               if (subergebnis.affectedRows)  {
                 let message = 'Update_success';
+                console.log(message);
                 return {message};
               }
               } else {
                 let message = 'Password_wrong';
+                console.log(message);
                 return {message};
               }
           }  
