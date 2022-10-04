@@ -4,6 +4,7 @@ const AddNewUser = require('../../services/Benutzer/AddNewUser');
 const UpdateUser = require('../../services/Benutzer/UpdateUser');
 const GetUserAccountnames = require('../../services/Benutzer/GetUserAccountnames');
 const GetLoginUser = require('../../services/Benutzer/GetLoginUser');
+const DeleteUser = require('../../services/Benutzer/DeleteUser');
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
 router.post('/AddNewUser', async function(req, res, next) {
@@ -41,6 +42,16 @@ router.post('/UpdateUser', async function(req, res, next) {
     res.json(await UpdateUser.UpdateUser(req.body));
   } catch (err) {
     console.error(`Error while creating UpdateUser`, err.message);
+    next(err);
+  }
+});
+
+/* DeleteUser - Nutzer löschen */
+router.post('/DeleteUser', async function(req, res, next) {
+  try {
+    res.json(await DeleteUser.DeleteUser(req.body));
+  } catch (err) {
+    console.error(`Error while creating DeleteUser`, err.message);
     next(err);
   }
 });
