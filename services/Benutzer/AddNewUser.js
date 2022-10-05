@@ -14,6 +14,16 @@ async function AddNewUser(AddNewUser){
       };
     
     });
+    if (result.affectedRows) {
+      var sql = 'SELECT `BenID` FROM `Benutzer` WHERE `Accountname` = ?';
+      const result = await db.query(sql, [AddNewUser.accountname.trim()], function (err, result) {
+        if (err) {
+          let message = 'Error';
+          return {message};
+        };
+      });
+      return (result[0].BenID);
+    }
   } else {
     var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Hintergrundfarbe`) VALUES (?, ?, ?, ?, ? )';
     const result = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim(), AddNewUser.hintergrundfarbe.trim()], function (err, result) {
@@ -21,10 +31,8 @@ async function AddNewUser(AddNewUser){
         let message = 'Error';
         return {message};
       };
-    
     });
-  }
-
+  
   if (result.affectedRows) {
     var sql = 'SELECT `BenID` FROM `Benutzer` WHERE `Accountname` = ?';
     const result = await db.query(sql, [AddNewUser.accountname.trim()], function (err, result) {
@@ -34,7 +42,7 @@ async function AddNewUser(AddNewUser){
       };
     });
     return (result[0].BenID);
-    
+  }
   }
 }
 
