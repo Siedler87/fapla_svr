@@ -9,8 +9,6 @@ async function GetAllFamiliesForUser(GetAllFamiliesForUser){
       return {message};
     };
   });
-  console.log(ergebnis);
-  console.log(ergebnis.length);
   if (ergebnis.length < 1) {
     let message = 'Account_not_found';
     return {message};
