@@ -44,12 +44,16 @@ async function DeleteUser(DeleteUser){
               let message = 'Account_not_found';
               return {message};
             }  
-        } 
+        } else {
+          let message = 'Password_wrong';
+          return {message};
+        }
+
       }
 
   } 
   if (DeleteUser.benid != null && DeleteUser.aktion === 'nebenaccountloeschen'){
-    
+
     //ToDo: Prüfen, ob BenID woanders genutzt wird (Zuordungstabellen, dann dort zuerst löschen)
     var sql = 'DELETE FROM `Benutzer` WHERE `BenID`= ?';
     const ergebnis = await db.query(sql, [DeleteUser.benid], function (err, result) {
