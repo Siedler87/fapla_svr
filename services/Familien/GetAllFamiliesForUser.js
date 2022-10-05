@@ -16,9 +16,9 @@ async function GetAllFamiliesForUser(GetAllFamiliesForUser){
     return {message};
   } else {
       let message = 'Success';
-      let accountname = ergebnis[0].accountname;
-      let familienname = ergebnis[0].familienname;
-      let bildid = ergebnis[0].bildid;
+      let accountname = ergebnis[0].Accountname;
+      let familienname = ergebnis[0].Gamilienname;
+      let bildid = ergebnis[0].BildID;
       return {message, accountname, familienname, bildid};
   }
 }
