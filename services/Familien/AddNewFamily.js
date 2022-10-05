@@ -22,7 +22,14 @@ async function create(AddNewFamily){
     
 
       var sql = 'INSERT INTO FamilienAdmin(`FamID`, `BenID`) VALUES (?,?)';
-      const subresult = await db.query(sql, [ergebnis[0].FamID, AddNewFamily.benid], function (err, subresult) {
+      const famadminresult = await db.query(sql, [ergebnis[0].FamID, AddNewFamily.benid], function (err, subresult) {
+        if (err) {
+          let message = 'Error';
+          return {message};
+        };
+      });
+      var sql = 'INSERT INTO FamilienBenutzer(`FamID`, `BenID`) VALUES (?,?)';
+      const fambenresult = await db.query(sql, [ergebnis[0].FamID, AddNewFamily.benid], function (err, subresult) {
         if (err) {
           let message = 'Error';
           return {message};
