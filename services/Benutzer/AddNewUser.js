@@ -5,8 +5,8 @@ async function AddNewUser(AddNewUser){
   // current date
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
-  const ergebnishaupt = false;
-  const ergebnisneben = false;
+  let ergebnishaupt = false;
+  let ergebnisneben = false;
 
   if (AddNewUser.email != null && AddNewUser.passwort != null && AddNewUser.email != undefined && AddNewUser.passwort != undefined){
     var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `LetzterLogin`, `Hintergrundfarbe`) VALUES (?, ?, ?, ?, ?, ?, ?, ? )';
