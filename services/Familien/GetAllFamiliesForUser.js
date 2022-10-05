@@ -1,9 +1,9 @@
 const db = require('../db');
 
-async function GetLoginFamily(GetLoginFamily){
+async function GetAllFamiliesForUser(GetAllFamiliesForUser){
 
-  var sql = 'SELECT `Passwort` FROM `Familien` WHERE `Accountname` = ?;';
-  const ergebnis = await db.query(sql, [GetLoginFamily.accountname.trim()], function (err, result) {
+  var sql = 'SELECT `Accountname`, `Familienname`, `BildID` FROM FamilienBenutzer,Familien WHERE FamilienBenutzer.FamID = Familien.FamID and FamilienBenutzer.BenID = ?;';
+  const ergebnis = await db.query(sql, [GetAllFamiliesForUser.benid], function (err, result) {
     if (err) {
       let message = 'Error';
       return {message};
@@ -13,16 +13,14 @@ async function GetLoginFamily(GetLoginFamily){
     let message = 'Account_not_found';
     return {message};
   } else {
-    if (ergebnis[0].Passwort == GetLoginFamily.passwort.trim()){
-        let message = 'Login_success';
-        return {message};
-    } else {
-      let message = 'Password_wrong';
-      return {message};
-    }
+      let message = 'Success';
+      let accountname = ergebnis[0].accountname;
+      let familienname = ergebnis[0].familienname;
+      let bildid = ergebnis[0].bildid;
+      return {message, accountname, familienname, bildid};
   }
 }
 
 module.exports = {
-  GetLoginFamily
+  GetAllFamiliesForUser
 }

@@ -39,9 +39,9 @@ router.post('/GetLoginFamily', async function(req, res, next) {
 /* GetAllFamiliesForUser - Passwort abfragen für Family-Login */
 router.post('/GetAllFamiliesForUser', async function(req, res, next) {
   try {
-    res.json(await GetAllFamiliesForUser.AllFamiliesForUser(req.body));
+    res.json(await GetAllFamiliesForUser.GetAllFamiliesForUser(req.body));
   } catch (err) {
-    console.error(`Error while fetching AllFamiliesForUser`, err.message);
+    console.error(`Error while fetching GetAllFamiliesForUser`, err.message);
     next(err);
   }
 });
