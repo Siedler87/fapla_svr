@@ -2,7 +2,7 @@ const db = require('../db');
 
 async function GetAllFamiliesForUser(GetAllFamiliesForUser){
 
-  var sql = 'SELECT `Accountname`, `Familienname`, `BildID` FROM FamilienBenutzer,Familien WHERE FamilienBenutzer.FamID = Familien.FamID and FamilienBenutzer.BenID = ?;';
+  var sql = 'SELECT `FamID`, `Accountname`, `Familienname`, `BildID` FROM FamilienBenutzer,Familien WHERE FamilienBenutzer.FamID = Familien.FamID and FamilienBenutzer.BenID = ?;';
   const ergebnis = await db.query(sql, [GetAllFamiliesForUser.benid], function (err, result) {
     if (err) {
       let message = 'Error';
