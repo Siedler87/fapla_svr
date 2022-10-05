@@ -13,11 +13,7 @@ async function GetAllFamiliesForUser(GetAllFamiliesForUser){
     let message = 'Account_not_found';
     return {message};
   } else {
-      let message = 'Success';
-      let accountname = ergebnis[0].Accountname;
-      let familienname = ergebnis[0].Familienname;
-      let bildid = ergebnis[0].BildID;
-      return {message, accountname, familienname, bildid};
+      return {ergebnis};
   }
 }
 
