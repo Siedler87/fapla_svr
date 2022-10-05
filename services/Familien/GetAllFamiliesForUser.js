@@ -9,11 +9,17 @@ async function GetAllFamiliesForUser(GetAllFamiliesForUser){
       return {message};
     };
   });
+  console.log(ergebnis);
+  console.log(ergebnis.length);
   if (ergebnis.length < 1) {
     let message = 'Account_not_found';
     return {message};
   } else {
-      return {ergebnis};
+      let message = 'Success';
+      let accountname = ergebnis[0].accountname;
+      let familienname = ergebnis[0].familienname;
+      let bildid = ergebnis[0].bildid;
+      return {message, accountname, familienname, bildid};
   }
 }
 
