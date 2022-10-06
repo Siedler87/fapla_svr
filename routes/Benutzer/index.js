@@ -5,7 +5,7 @@ const UpdateUser = require('../../services/Benutzer/UpdateUser');
 const GetUserAccountnames = require('../../services/Benutzer/GetUserAccountnames');
 const GetLoginUser = require('../../services/Benutzer/GetLoginUser');
 const DeleteUser = require('../../services/Benutzer/DeleteUser');
-const DeleteUser = require('../../services/Benutzer/GetAllUsersForFamily');
+const GetAllUsersForFamily = require('../../services/Benutzer/GetAllUsersForFamily');
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
 router.post('/AddNewUser', async function(req, res, next) {
