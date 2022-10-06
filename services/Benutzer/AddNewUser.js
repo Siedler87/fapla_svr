@@ -24,16 +24,26 @@ async function AddNewUser(AddNewUser){
         return {message};
       };
     });
+    
   }
   if (ergebnishaupt.affectedRows || ergebnisneben.affectedRows) {
     var sql = 'SELECT `BenID` FROM `Benutzer` WHERE `Accountname` = ?';
-    const ergebnis = await db.query(sql, [AddNewUser.accountname.trim()], function (err, result) {
+    const ergebnisben = await db.query(sql, [AddNewUser.accountname.trim()], function (err, result) {
       if (err) {
         let message = 'Error';
         return {message};
       };
     });
-    return (ergebnis[0].BenID);
+    if (ergebnisneben.affectedRows){
+      var sql = 'INSERT INTO `FamilienBenutzer`(`FamID`, `BenID`) VALUES (?,?)';
+      const ergebnisfamben = await db.query(sql, [AddNewUser.famid, ergebnisben[0].BenID], function (err, result) {
+        if (err) {
+          let message = 'Error';
+          return {message};
+        };
+      });
+    }
+    return (ergebnisben[0].BenID);
   }
 }
 
