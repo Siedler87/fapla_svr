@@ -6,7 +6,7 @@ const GetLoginFamily = require('../../services/Familien/GetLoginFamily');
 const GetAllFamiliesForUser = require('../../services/Familien/GetAllFamiliesForUser');
 const AssignUserToFamily = require('../../services/Familien/AssignUserToFamily');
 const GetAllUsersForFamily = require('../../services/Familien/GetAllUsersForFamily');
-
+const DeleteFamily = require('../../services/Familien/DeleteFamily');
 
 
 
@@ -66,6 +66,16 @@ router.post('/GetAllUsersForFamily', async function(req, res, next) {
     res.json(await GetAllUsersForFamily.GetAllUsersForFamily(req.body));
   } catch (err) {
     console.error(`Error while creating GetAllUsersForFamily`, err.message);
+    next(err);
+  }
+});
+
+/* DeleteFamily - Familie löschen */
+router.post('/DeleteFamily', async function(req, res, next) {
+  try {
+    res.json(await DeleteFamily.DeleteFamily(req.body));
+  } catch (err) {
+    console.error(`Error while creating DeleteFamily`, err.message);
     next(err);
   }
 });
