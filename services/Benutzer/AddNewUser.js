@@ -17,8 +17,8 @@ async function AddNewUser(AddNewUser){
       };
     });
   } else {
-    var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Hintergrundfarbe`) VALUES (?, ?, ?, ?, ? )';
-    ergebnisneben = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim(), AddNewUser.hintergrundfarbe.trim()], function (err, result) {
+    var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`) VALUES (?, ?, ?, ?)';
+    ergebnisneben = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim()], function (err, result) {
       if (err) {
         let message = 'Error';
         return {message};
