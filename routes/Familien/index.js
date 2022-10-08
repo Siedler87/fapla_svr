@@ -5,6 +5,8 @@ const GetFamilyAccountnames = require('../../services/Familien/GetFamilyAccountn
 const GetLoginFamily = require('../../services/Familien/GetLoginFamily');
 const GetAllFamiliesForUser = require('../../services/Familien/GetAllFamiliesForUser');
 const AssignUserToFamily = require('../../services/Familien/AssignUserToFamily');
+const GetAllUsersForFamily = require('../../services/Benutzer/GetAllUsersForFamily');
+
 
 
 
@@ -54,6 +56,16 @@ router.post('/AssignUserToFamily', async function(req, res, next) {
     res.json(await AssignUserToFamily.AssignUserToFamily(req.body));
   } catch (err) {
     console.error(`Error while fetching AssignUserToFamily`, err.message);
+    next(err);
+  }
+});
+
+/* GetAllUsersForFamily - alle vorhanden Benutzer zu einer Familie anzeigen */
+router.post('/GetAllUsersForFamily', async function(req, res, next) {
+  try {
+    res.json(await GetAllUsersForFamily.GetAllUsersForFamily(req.body));
+  } catch (err) {
+    console.error(`Error while creating GetAllUsersForFamily`, err.message);
     next(err);
   }
 });
