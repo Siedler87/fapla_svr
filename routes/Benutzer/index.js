@@ -5,7 +5,6 @@ const UpdateUser = require('../../services/Benutzer/UpdateUser');
 const GetUserAccountnames = require('../../services/Benutzer/GetUserAccountnames');
 const GetLoginUser = require('../../services/Benutzer/GetLoginUser');
 const DeleteUser = require('../../services/Benutzer/DeleteUser');
-const GetAllUsersForFamily = require('../../services/Benutzer/GetAllUsersForFamily');
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
 router.post('/AddNewUser', async function(req, res, next) {
@@ -57,15 +56,7 @@ router.post('/DeleteUser', async function(req, res, next) {
   }
 });
 
-/* GetAllUsersForFamily - alle vorhanden Benutzer zu einer Familie anzeigen */
-router.post('/GetAllUsersForFamily', async function(req, res, next) {
-  try {
-    res.json(await GetAllUsersForFamily.GetAllUsersForFamily(req.body));
-  } catch (err) {
-    console.error(`Error while creating GetAllUsersForFamily`, err.message);
-    next(err);
-  }
-});
+
 
 module.exports = router;
 
