@@ -19,9 +19,10 @@ async function AssignUserToFamily(AssignUserToFamily){
         let message = 'Error';
         return {message};
       };
+      });
         let message = 'Success';
         return {message};
-      });
+      
   }
 }
 
