@@ -4,6 +4,8 @@ const AddNewFamily = require('../../services/Familien/AddNewFamily');
 const GetFamilyAccountnames = require('../../services/Familien/GetFamilyAccountnames');
 const GetLoginFamily = require('../../services/Familien/GetLoginFamily');
 const GetAllFamiliesForUser = require('../../services/Familien/GetAllFamiliesForUser');
+const AssignUserToFamily = require('../../services/Familien/AssignUserToFamily');
+
 
 
 /* AddNewFamily - neue Familie eintragen */
@@ -45,6 +47,17 @@ router.post('/GetAllFamiliesForUser', async function(req, res, next) {
     next(err);
   }
 });
+
+/* AssignUserToFamily - User zur Familie hinzufügen */
+router.post('/AssignUserToFamily', async function(req, res, next) {
+  try {
+    res.json(await AssignUserToFamily.AssignUserToFamily(req.body));
+  } catch (err) {
+    console.error(`Error while fetching AssignUserToFamily`, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;
 
