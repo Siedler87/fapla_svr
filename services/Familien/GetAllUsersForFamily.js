@@ -2,7 +2,7 @@ const db = require('../db');
 
 async function GetAllUsersForFamily(GetAllUsersForFamily){
 
-  var sql = 'SELECT `Benutzer`.`BenID`, `Benutzer`.`Accountname`, `Benutzer`.`Vorname`, `Benutzer`.`Nachname`, `Benutzer`.`Geburtsdatum`, `Benutzer`.`Email`, `Benutzer`.`LetzterLogin`, `Benutzer`.`Hintergrundfarbe`, `Benutzer`.`BildID`, `Familien`.`Familienname`, case when `FamilienAdmin`.`BenID` > 0 then "H" else "N" end as `Accounttyp` FROM `FamilienBenutzer` JOIN `Benutzer` on `FamilienBenutzer`.`BenID`=`Benutzer`.`BenID` JOIN `Familien` on `Familien`.`FamID`=`FamilienBenutzer`.`FamID` LEFT JOIN `FamilienAdmin` on (`FamilienBenutzer`.`FamID`,`FamilienBenutzer`.`BenID`)=(`FamilienAdmin`.`FamID`,`FamilienAdmin`.`BenID`) WHERE `FamilienBenutzer`.`FamID` = ?;';
+  var sql = 'SELECT `Benutzer`.`BenID`, `Benutzer`.`Accountname`, `Benutzer`.`Vorname`, `Benutzer`.`Nachname`, `Benutzer`.`Geburtsdatum`, `Benutzer`.`Email`, `Benutzer`.`LetzterLogin`, `Benutzer`.`Hintergrundfarbe`, `Benutzer`.`BildID`, `Familien`.`Familienname`, case when `Benutzer`.`Passwort` is not null then "H" else "N" end as `Accounttyp`,case when `FamilienAdmin`.`BenID` is not null then "Y" else "N" end as `Admin` FROM `FamilienBenutzer` JOIN `Benutzer` on `FamilienBenutzer`.`BenID`=`Benutzer`.`BenID` JOIN `Familien` on `Familien`.`FamID`=`FamilienBenutzer`.`FamID` LEFT JOIN `FamilienAdmin` on (`FamilienBenutzer`.`FamID`,`FamilienBenutzer`.`BenID`)=(`FamilienAdmin`.`FamID`,`FamilienAdmin`.`BenID`) WHERE `FamilienBenutzer`.`FamID` = ?;';
   const ergebnis = await db.query(sql, [GetAllUsersForFamily.famid], function (err, result) {
     if (err) {
       let message = 'Error';
