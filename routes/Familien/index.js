@@ -5,7 +5,7 @@ const GetFamilyAccountnames = require('../../services/Familien/GetFamilyAccountn
 const GetLoginFamily = require('../../services/Familien/GetLoginFamily');
 const GetAllFamiliesForUser = require('../../services/Familien/GetAllFamiliesForUser');
 const AssignUserToFamily = require('../../services/Familien/AssignUserToFamily');
-const GetAllUsersForFamily = require('../../services/Benutzer/GetAllUsersForFamily');
+const GetAllUsersForFamily = require('../../services/Familien/GetAllUsersForFamily');
 
 
 
