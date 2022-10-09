@@ -17,7 +17,13 @@ async function DeleteUser(DeleteUser){
       } else {
         if (ergebnis[0].Passwort == DeleteUser.passwort.trim()){
 
-            //ToDo: Prüfen, ob BenID woanders genutzt wird (Zuordungstabellen, dann dort zuerst löschen)
+          var sql = 'delete `BenutzerAltersstufen`, `BenutzerGruppen`, `BenutzerTermine`, `FamilienBenutzer`, `Hauptmenuerechte`, `FamilienAdmin` from `Benutzer` LEFT JOIN `BenutzerAltersstufen` ON `BenutzerAltersstufen`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `BenutzerGruppen` ON `BenutzerGruppen`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `BenutzerTermine` ON `BenutzerTermine`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `FamilienBenutzer` ON `FamilienBenutzer`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `Hauptmenuerechte` ON `Hauptmenuerechte`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `FamilienAdmin` ON `FamilienAdmin`.`BenID`  = `Benutzer`.`BenID` where `Benutzer`.`BenID` = ?';
+          const vorergebnis = await db.query(sql, [DeleteUser.benid], function (err, result) {
+            if (err) {
+              let message = 'Error';
+              return {message};
+            };
+          });
             var sql = 'DELETE FROM `Benutzer` WHERE `BenID`= ?';
             const ergebnis = await db.query(sql, [DeleteUser.benid], function (err, result) {
               if (err) {
@@ -54,7 +60,14 @@ async function DeleteUser(DeleteUser){
   } 
   if (DeleteUser.benid != null && DeleteUser.aktion === 'nebenaccountloeschen'){
 
-    //ToDo: Prüfen, ob BenID woanders genutzt wird (Zuordungstabellen, dann dort zuerst löschen)
+    var sql = 'delete `BenutzerAltersstufen`, `BenutzerGruppen`, `BenutzerTermine`, `FamilienBenutzer`, `Hauptmenuerechte`, `FamilienAdmin` from `Benutzer` LEFT JOIN `BenutzerAltersstufen` ON `BenutzerAltersstufen`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `BenutzerGruppen` ON `BenutzerGruppen`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `BenutzerTermine` ON `BenutzerTermine`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `FamilienBenutzer` ON `FamilienBenutzer`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `Hauptmenuerechte` ON `Hauptmenuerechte`.`BenID`  = `Benutzer`.`BenID` LEFT JOIN `FamilienAdmin` ON `FamilienAdmin`.`BenID`  = `Benutzer`.`BenID` where `Benutzer`.`BenID` = ?';
+    const vorergebnis = await db.query(sql, [DeleteUser.benid], function (err, result) {
+      if (err) {
+        let message = 'Error';
+        return {message};
+      };
+    });
+
     var sql = 'DELETE FROM `Benutzer` WHERE `BenID`= ?';
     const ergebnis = await db.query(sql, [DeleteUser.benid], function (err, result) {
       if (err) {
