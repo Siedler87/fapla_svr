@@ -3,7 +3,7 @@ const db = require('../db');
 async function UpdateFamily(UpdateFamily){
 
   // Familienname aktualisieren
-  if (UpdateFamily.famid != null && UpdateFamily.familienname != null) {
+  if (UpdateFamily.famid != undefined && UpdateFamily.familienname != undefined) {
     var sql = 'UPDATE `Familien` SET `Familienname` = ? WHERE `famid`= ?';
     const ergebnis = await db.query(sql, [UpdateFamily.familienname.trim(), UpdateFamily.famid], function (err, result) {
       if (err) {
@@ -30,8 +30,7 @@ async function UpdateFamily(UpdateFamily){
       return {message};
     }
   } 
-  if (UpdateFamily.famid != null && UpdateFamily.passwort != null && UpdateFamily.neuespasswort != null){
-      console.log("Update Family Passwort");
+  if (UpdateFamily.famid != undefined && UpdateFamily.passwort != undefined && UpdateFamily.neuespasswort != undefined){
       var sql = 'SELECT `Passwort` FROM `Familien` WHERE `famid` =  ?';
       const ergebnis = await db.query(sql, [UpdateFamily.famid], async function (err, result) {
         if (err) {
@@ -41,13 +40,10 @@ async function UpdateFamily(UpdateFamily){
         };
       })
         if (ergebnis.length < 1)  {
-          console.log("Kein Treffer");
           let message = 'Account_not_found';
           return {message};
         } else {
-          console.log(">= 1 Treffer");
           if (ergebnis[0].Passwort == UpdateFamily.passwort.trim()){
-              console.log("Passwort stimmt");
               var sql = 'UPDATE `Familien` SET `Passwort`=? WHERE `famid`=?';
               const subergebnis = await db.query(sql, [UpdateFamily.neuespasswort.trim(), UpdateFamily.famid], function (err, result) {
                 if (err) {
@@ -60,7 +56,6 @@ async function UpdateFamily(UpdateFamily){
                 return {message};
               }
               } else {
-                console.log("Passwort stimmt nicht");
                 let message = 'Password_wrong';
                 return {message};
               }
@@ -68,7 +63,7 @@ async function UpdateFamily(UpdateFamily){
   } 
   
   // bei falschen Parameten
-  if ((UpdateFamily.famid == null) || (UpdateFamily.familienname == null && UpdateFamily.passwort == null && UpdateFamily.neuespasswort == null)){
+  if ((UpdateFamily.famid == undefined) || (UpdateFamily.familienname == undefined && UpdateFamily.passwort == undefined && UpdateFamily.neuespasswort == undefined)){
     let message = 'Keine_Parameter';
     return {message};
   }
