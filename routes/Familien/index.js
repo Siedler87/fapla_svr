@@ -7,7 +7,7 @@ const GetAllFamiliesForUser = require('../../services/Familien/GetAllFamiliesFor
 const AssignUserToFamily = require('../../services/Familien/AssignUserToFamily');
 const GetAllUsersForFamily = require('../../services/Familien/GetAllUsersForFamily');
 const DeleteFamily = require('../../services/Familien/DeleteFamily');
-
+const UpdateFamily = require('../../services/Familien/UpdateFamily');
 
 
 /* AddNewFamily - neue Familie eintragen */
@@ -80,6 +80,16 @@ router.post('/DeleteFamily', async function(req, res, next) {
   }
 });
 
+
+/* UpdateFamily - Familie aktualisieren */
+router.post('/UpdateFamily', async function(req, res, next) {
+  try {
+    res.json(await UpdateFamily.UpdateFamily(req.body));
+  } catch (err) {
+    console.error(`Error while creating UpdateFamily`, err.message);
+    next(err);
+  }
+});
 
 module.exports = router;
 
