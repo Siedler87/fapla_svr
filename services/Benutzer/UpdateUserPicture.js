@@ -12,15 +12,16 @@ async function UpdateUserPicture(UpdateUserPicture){
         };
       });
       if (ergebnis.affectedRows) {
-      var sql = 'SELECT `BildID` FROM `Benutzer` WHERE `BenID`= ?';
+      var sql = 'SELECT  `Benutzer`.`BenID`, `Bilder`.`Pfad` FROM `Benutzer` LEFT JOIN `Bilder` ON `Bilder`.`BildID` = `Benutzer`.`BildID` WHERE `BenID`= ?';
       const subergebnis = await db.query(sql, [UpdateUserPicture.benid], function (err, result) {
         if (err) {
           let message = 'Error';
           return {message};
         };
       });
-      let bildid = subergebnis[0].BildID;
-      return {message, bildid};
+      let benid = subergebnis[0].BenID;      
+      let pfad = subergebnis[0].Pfad;
+      return {benid, pfad};
       } else  {
         let message = 'Account_not_found';
         return {message};
