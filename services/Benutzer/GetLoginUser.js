@@ -5,7 +5,7 @@ async function GetLoginUser(GetLoginUser){
   // current date
 
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  var sql = 'SELECT `BenID`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `Hintergrundfarbe`, `BildID` FROM `Benutzer` WHERE `Accountname` =  ?;';
+  var sql = 'SELECT `BenID`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `Hintergrundfarbe`, `Bilder`.`Pfad` FROM `Benutzer` LEFT JOIN `Bilder` ON `Bilder`.`BildID` = `Benutzer`.`BildID` WHERE `Accountname` =  ?;';
   const ergebnis = await db.query(sql, [GetLoginUser.accountname.trim()], function (err, result) {
     if (err) {
       console.log(err);
@@ -32,8 +32,8 @@ async function GetLoginUser(GetLoginUser){
           let geburtsdatum = ergebnis[0].Geburtsdatum;
           let email = ergebnis[0].Email;
           let hintergrundfarbe = ergebnis[0].Hintergrundfarbe;
-          let bildid = ergebnis[0].BildID;
-          return {message, benid, vorname, nachname, geburtsdatum, email, hintergrundfarbe, bildid};
+          let pfad = ergebnis[0].Pfad;
+          return {message, benid, vorname, nachname, geburtsdatum, email, hintergrundfarbe, pfad};
 
       } else {
         let message = 'Password_wrong';
