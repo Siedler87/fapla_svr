@@ -6,6 +6,7 @@ const GetUserAccountnames = require('../../services/Benutzer/GetUserAccountnames
 const GetLoginUser = require('../../services/Benutzer/GetLoginUser');
 const DeleteUser = require('../../services/Benutzer/DeleteUser');
 const UpdateUserPicture = require('../../services/Benutzer/UpdateUserPicture');
+const GetUserAllPictures = require('../../services/Benutzer/GetUserAllPictures');
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
 router.post('/AddNewUser', async function(req, res, next) {
@@ -67,7 +68,15 @@ router.post('/UpdateUserPicture', async function(req, res, next) {
   }
 });
 
-
+/* GetUserAllPictures - alle möglichen Nutzerbilder von Bilder abfragen */
+router.get('/GetUserAllPictures', async function(req, res, next) {
+  try {
+    res.json(await GetUserAllPictures.GetUserAllPictures());
+  } catch (err) {
+    console.error(`Error while fetching GetUserAllPictures`, err.message);
+    next(err);
+  }
+});
 
 module.exports = router;
 
