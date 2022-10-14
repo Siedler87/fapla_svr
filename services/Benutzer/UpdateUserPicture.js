@@ -2,7 +2,7 @@ const db = require('../db');
 
 async function UpdateUserPicture(UpdateUserPicture){
 
-  if (UpdateUserPicture.benid != null && UpdateUserPicture.bildid != null && UpdateUserPicture.neuebildid != null) {
+  if (UpdateUserPicture.benid != null && UpdateUserPicture.neuebildid != null) {
     if (UpdateUserPicture.bildid != UpdateUserPicture.neuebildid){ 
       var sql = 'UPDATE `Benutzer` SET `BildID` = ? where `BenID` = ?';
       const ergebnis = await db.query(sql, [UpdateUserPicture.neuebildid, UpdateUserPicture.benid], function (err, result) {
