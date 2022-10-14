@@ -5,7 +5,7 @@ async function UpdateUserPicture(UpdateUserPicture){
   if (UpdateUserPicture.benid != null && UpdateUserPicture.bildid != null && UpdateUserPicture.neuebildid != null) {
     if (UpdateUserPicture.bildid != UpdateUserPicture.neuebildid){ 
       var sql = 'UPDATE `Benutzer` SET `BildID` = ? where `BenID` = ?';
-      const ergebnis = await db.query(sql, [UpdateUserPicture.bildid, UpdateUserPicture.benid], function (err, result) {
+      const ergebnis = await db.query(sql, [UpdateUserPicture.neuebildid, UpdateUserPicture.benid], function (err, result) {
         if (err) {
           let message = 'Error';
           return {message};
