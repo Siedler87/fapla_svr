@@ -5,6 +5,7 @@ const UpdateUser = require('../../services/Benutzer/UpdateUser');
 const GetUserAccountnames = require('../../services/Benutzer/GetUserAccountnames');
 const GetLoginUser = require('../../services/Benutzer/GetLoginUser');
 const DeleteUser = require('../../services/Benutzer/DeleteUser');
+const UpdateUserPicture = require('../../services/Benutzer/UpdateUserPicture');
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
 router.post('/AddNewUser', async function(req, res, next) {
@@ -52,6 +53,16 @@ router.post('/DeleteUser', async function(req, res, next) {
     res.json(await DeleteUser.DeleteUser(req.body));
   } catch (err) {
     console.error(`Error while creating DeleteUser`, err.message);
+    next(err);
+  }
+});
+
+/* UpdateUserPicture - Benutzerbild updaten */
+router.post('/UpdateUserPicture', async function(req, res, next) {
+  try {
+    res.json(await UpdateUserPicture.UpdateUserPicture(req.body));
+  } catch (err) {
+    console.error(`Error while creating UpdateUserPicture`, err.message);
     next(err);
   }
 });
