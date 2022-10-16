@@ -9,16 +9,16 @@ async function AddNewUser(AddNewUser){
   let ergebnisneben = false;
 
   if (AddNewUser.email != null && AddNewUser.passwort != null && AddNewUser.email != undefined && AddNewUser.passwort != undefined){
-    var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `LetzterLogin`, `Hintergrundfarbe`) VALUES (?, ?, ?, ?, ?, ?, ?, ? )';
-    ergebnishaupt = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim(), AddNewUser.email.trim(), AddNewUser.passwort.trim(), CurrentTimestamp, AddNewUser.hintergrundfarbe.trim()], function (err, result) {
+    var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `LetzterLogin`, `Hintergrundfarbe`, `BildID`) VALUES (?, ?, ?, ?, ?, ?, ?, ? )';
+    ergebnishaupt = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim(), AddNewUser.email.trim(), AddNewUser.passwort.trim(), CurrentTimestamp, AddNewUser.hintergrundfarbe.trim(), 1], function (err, result) {
       if (err) {
         let message = 'Error';
         return {message};
       };
     });
   } else {
-    var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`) VALUES (?, ?, ?, ?)';
-    ergebnisneben = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim()], function (err, result) {
+    var sql = 'INSERT INTO Benutzer (`Accountname`, `Vorname`, `Nachname`, `Geburtsdatum`, `BildID`) VALUES (?, ?, ?, ?)';
+    ergebnisneben = await db.query(sql, [AddNewUser.accountname.trim(), AddNewUser.vorname.trim(), AddNewUser.nachname.trim(), AddNewUser.geburtsdatum.trim(), 1], function (err, result) {
       if (err) {
         let message = 'Error';
         return {message};
@@ -42,6 +42,14 @@ async function AddNewUser(AddNewUser){
           return {message};
         };
       });
+      var sql = 'INSERT INTO `BenutzerAltersstufen`(`BenID`, `AlsID`) VALUES (?,?)';
+      const ergebnisbenalt = await db.query(sql, [ergebnisben[0].BenID, 2], function (err, result) {
+        if (err) {
+          let message = 'Error';
+          return {message};
+        };
+      });
+
     }
     return (ergebnisben[0].BenID);
   }
