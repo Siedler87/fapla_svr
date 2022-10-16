@@ -2,8 +2,8 @@ const db = require('../db');
 
 async function create(AddNewFamily){
 
-  var sql = 'INSERT INTO Familien(`Accountname`,`Familienname`, `Passwort`) VALUES (?,?,?)';
-  const result = await db.query(sql, [AddNewFamily.accountname.trim(), AddNewFamily.familienname.trim(), AddNewFamily.passwort.trim()], function (err, result) {
+  var sql = 'INSERT INTO Familien(`Accountname`,`Familienname`, `Passwort`, `BildID`) VALUES (?,?,?,?)';
+  const result = await db.query(sql, [AddNewFamily.accountname.trim(), AddNewFamily.familienname.trim(), AddNewFamily.passwort.trim(),'1'], function (err, result) {
     if (err) {
       let message = 'Error';
       return {message};
