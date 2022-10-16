@@ -8,6 +8,8 @@ const DeleteUser = require('../../services/Benutzer/DeleteUser');
 const UpdateUserPicture = require('../../services/Benutzer/UpdateUserPicture');
 const GetUserAllPictures = require('../../services/Benutzer/GetUserAllPictures');
 const UpdateUserAgeRestriction = require('../../services/Benutzer/UpdateUserAgeRestriction');
+const UpgradeUserAccount = require('../../services/Benutzer/UpgradeUserAccount');
+
 
 /* AddNewUser - neuen Hauptnutzer eintragen */
 router.post('/AddNewUser', async function(req, res, next) {
