@@ -68,7 +68,7 @@ async function DeleteUser(DeleteUser){
       };
     });
 
-    var sql = 'DELETE FROM `Benutzer` WHERE `BenID`= ?';
+    var sql = 'DELETE FROM `Benutzer` WHERE `BenID`= ? AND `Benutzer`.`Passwort` is null AND `Benutzer`.`Email` is null';
     const ergebnis = await db.query(sql, [DeleteUser.benid], function (err, result) {
       if (err) {
         let message = 'Error';
