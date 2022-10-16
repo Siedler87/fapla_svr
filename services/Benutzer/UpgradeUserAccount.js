@@ -18,7 +18,7 @@ async function UpgradeUserAccount(UpgradeUserAccount){
         return {message};
         };
       });
-      var sql = 'SELECT `Benutzer`.`BenID`, `Benutzer`.`Email` FROM `Benutzer` WHERE `Benutzer`.`BenID` = ?;';
+      var sql = 'SELECT `BenID`, `Email` FROM `Benutzer` WHERE `Benutzer`.`BenID` = ?;';
       const subergebnis = await db.query(sql, [UpgradeUserAccount.benid], function (err, result) {
         if (err) {
           let message = 'Error';
