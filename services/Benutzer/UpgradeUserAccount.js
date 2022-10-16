@@ -4,7 +4,7 @@ async function UpgradeUserAccount(UpgradeUserAccount){
 
   if (UpgradeUserAccount.benid != null && UpgradeUserAccount.email != null && UpgradeUserAccount.passwort != null) {
     var sql = 'UPDATE `Benutzer` SET `Email`= ?,`Passwort`= ? WHERE `BenID`= ?;';
-    const ergebnis = await db.query(sql, [UpgradeUserAccount.benid, UpgradeUserAccount.email.trim(), UpgradeUserAccount.passwort.trim()], function (err, result) {
+    const ergebnis = await db.query(sql, [UpgradeUserAccount.email.trim(), UpgradeUserAccount.passwort.trim(), UpgradeUserAccount.benid], function (err, result) {
       if (err) {
         let message = 'Error';
         return {message};
@@ -12,7 +12,7 @@ async function UpgradeUserAccount(UpgradeUserAccount){
     });
     if (ergebnis.affectedRows) {
       var sql = 'UPDATE `BenutzerAltersstufen` SET `AlsID`= ? WHERE `BenID`= ? ';
-      const ergebnis = await db.query(sql, ['3', UpgradeUserAccount.benid], function (err, result) {
+      const ergebnis = await db.query(sql, ['3',UpgradeUserAccount.benid], function (err, result) {
       if (err) {
         let message = 'Error';
         return {message};
