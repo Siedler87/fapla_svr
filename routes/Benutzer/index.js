@@ -89,5 +89,15 @@ router.post('/UpdateUserAgeRestriction', async function(req, res, next) {
   }
 });
 
+/* UpgradeUserAccount - Benutzer von Nebenbenutzer auf Hauptbenutzer erweitern */
+router.post('/UpgradeUserAccount', async function(req, res, next) {
+  try {
+    res.json(await UpgradeUserAccount.UpgradeUserAccount(req.body));
+  } catch (err) {
+    console.error(`Error while creating UpgradeUserAccount`, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;
 
