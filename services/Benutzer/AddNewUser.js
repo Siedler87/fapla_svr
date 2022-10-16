@@ -34,6 +34,15 @@ async function AddNewUser(AddNewUser){
         return {message};
       };
     });
+    if (ergebnishaupt.affectedRows){
+      var sql = 'INSERT INTO `BenutzerAltersstufen`(`BenID`, `AlsID`) VALUES (?,?)';
+      const ergebnisbenalt = await db.query(sql, [ergebnisben[0].BenID, '3'], function (err, result) {
+        if (err) {
+          let message = 'Error';
+          return {message};
+        };
+      });
+    }
     if (ergebnisneben.affectedRows){
       var sql = 'INSERT INTO `FamilienBenutzer`(`FamID`, `BenID`) VALUES (?,?)';
       const ergebnisfamben = await db.query(sql, [AddNewUser.famid, ergebnisben[0].BenID], function (err, result) {
