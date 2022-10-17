@@ -32,8 +32,14 @@ async function AssignAdminToFamily(AssignAdminToFamily){
             return {message};
           };
         });
-        let message = 'Assigned';
-        return {message};
+        var sql = 'SELECT `Benutzer`.`BenID`, `Benutzer`.`Accountname`, `Benutzer`.`Vorname`, `Benutzer`.`Nachname`, `Benutzer`.`Geburtsdatum`, `Benutzer`.`Email`, `Benutzer`.`LetzterLogin`, `Benutzer`.`Hintergrundfarbe`, `Bilder`.`Pfad`, `Familien`.`Familienname`, case when `Benutzer`.`Passwort` is not null then "H" else "N" end as `Accounttyp`,case when `FamilienAdmin`.`BenID` is not null then "Y" else "N" end as `Admin`, `Altersstufen`.`Von`, `Altersstufen`.`Bis`,`Altersstufen`.`Zeitfenster`,`Altersstufen`.`Darstellung` FROM `FamilienBenutzer` JOIN `Benutzer` on `FamilienBenutzer`.`BenID`=`Benutzer`.`BenID` JOIN `Familien` on `Familien`.`FamID`=`FamilienBenutzer`.`FamID` LEFT JOIN `FamilienAdmin` on (`FamilienBenutzer`.`FamID`,`FamilienBenutzer`.`BenID`)=(`FamilienAdmin`.`FamID`,`FamilienAdmin`.`BenID`) LEFT JOIN `BenutzerAltersstufen` on `BenutzerAltersstufen`.`BenID`=`Benutzer`.`BenID` LEFT JOIN `Altersstufen` on `BenutzerAltersstufen`.`AlsID`=`Altersstufen`.`AlsID` LEFT JOIN `Bilder` ON `Bilder`.`BildID` = `Benutzer`.`BildID` WHERE `FamilienBenutzer`.`FamID` = ? AND `FamilienBenutzer`.`BenID` = ?;';
+        const ergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.benid], function (err, result) {
+          if (err) {
+            let message = 'Error';
+            return {message};
+          };
+        });
+        return {ergebnis};
       // ansonsten entferne ihn    
       } else {
         // prüfe zuvor, ob noch ein Admin verbleiben würde
