@@ -44,6 +44,7 @@ async function AssignAdminToFamily(AssignAdminToFamily){
             return {message};
             };
         });
+        console.log(adminergebnis);
         console.log(adminergebnis.Anzahl);
         if (adminergebnis.Anzahl > 1){
           var sql = 'DELETE FROM `FamilienAdmin` WHERE `FamID` = ? AND `BenID` = ?;'; 
