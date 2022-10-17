@@ -37,7 +37,7 @@ async function AssignAdminToFamily(AssignAdminToFamily){
       // ansonsten entferne ihn    
       } else {
         // prüfe zuvor, ob noch ein Admin verbleiben würde
-        var sql = 'SELECT count(*) AS Anzahl FROM `FamilienAdmin` WHERE `FamID` = ?;';
+        var sql = 'SELECT `BenID` FROM `FamilienAdmin` WHERE `FamID` = ?;';
         const adminergebnis = await db.query(sql, [AssignAdminToFamily.famid], function (err, result) {
           if (err) {
             let message = 'Error';
@@ -46,8 +46,7 @@ async function AssignAdminToFamily(AssignAdminToFamily){
         });
         console.log(adminergebnis);
         console.log(adminergebnis.length);
-        console.log(adminergebnis.Anzahl);
-        if (adminergebnis.Anzahl > 1){
+        if (adminergebnis.length > 1){
           var sql = 'DELETE FROM `FamilienAdmin` WHERE `FamID` = ? AND `BenID` = ?;'; 
           const unassignergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.BenID], function (err, result) {
             if (err) {
