@@ -58,8 +58,14 @@ async function AssignAdminToFamily(AssignAdminToFamily){
               return {message};
             };
           });
-          let message = 'Deleted';
-          return {message};
+          var sql = 'SELECT `FamilienBenutzer`.`BenID`, case when `FamilienAdmin`.`BenID` is not null then "Y" else "N" end as `Admin` FROM `FamilienBenutzer` LEFT JOIN `FamilienAdmin` on (`FamilienBenutzer`.`FamID`,`FamilienBenutzer`.`BenID`)=(`FamilienAdmin`.`FamID`,`FamilienAdmin`.`BenID`) WHERE `FamilienBenutzer`.`FamID` = ? AND `FamilienBenutzer`.`BenID` = ?;';
+          const ergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.benid], function (err, result) {
+            if (err) {
+              let message = 'Error';
+              return {message};
+            };
+          });
+          return {ergebnis};
         } else {
           let message = 'Cant_Delete_Last_Admin';
           return {message};
