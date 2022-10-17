@@ -26,7 +26,7 @@ async function AssignAdminToFamily(AssignAdminToFamily){
       // wenn nicht, dann lege ihn an  
       if (subergebnis.length < 1) {
         var sql = 'INSERT INTO `FamilienAdmin`(`FamID`, `BenID`) VALUES (?,?);'; 
-        const assignergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.BenID], function (err, result) {
+        const assignergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.benid], function (err, result) {
           if (err) {
             let message = 'Error';
             return {message};
