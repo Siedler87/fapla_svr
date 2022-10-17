@@ -8,6 +8,7 @@ const AssignUserToFamily = require('../../services/Familien/AssignUserToFamily')
 const GetAllUsersForFamily = require('../../services/Familien/GetAllUsersForFamily');
 const DeleteFamily = require('../../services/Familien/DeleteFamily');
 const UpdateFamily = require('../../services/Familien/UpdateFamily');
+const AssignAdminToFamily = require('../../services/Familien/AssignAdminToFamily');
 
 
 /* AddNewFamily - neue Familie eintragen */
@@ -80,7 +81,6 @@ router.post('/DeleteFamily', async function(req, res, next) {
   }
 });
 
-
 /* UpdateFamily - Familie aktualisieren */
 router.post('/UpdateFamily', async function(req, res, next) {
   try {
@@ -90,6 +90,18 @@ router.post('/UpdateFamily', async function(req, res, next) {
     next(err);
   }
 });
+
+/* AssignAdminToFamily - Familienadmin aktualisieren */
+router.post('/AssignAdminToFamily', async function(req, res, next) {
+  try {
+    res.json(await AssignAdminToFamily.AssignAdminToFamily(req.body));
+  } catch (err) {
+    console.error(`Error while creating AssignAdminToFamily`, err.message);
+    next(err);
+  }
+});
+
+
 
 module.exports = router;
 
