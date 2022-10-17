@@ -16,7 +16,7 @@ async function AssignAdminToFamily(AssignAdminToFamily){
       return {message};
     } else {
       // Prüfe, ob Benutzer für die Familie bereits Admin ist
-      var sql = 'SELECT FROM `FamilienAdmin` WHERE `FamID` = ? AND `BenID` =  ?;';
+      var sql = 'SELECT FROM `FamilienAdmin` WHERE `FamID` = ? AND `BenID` = ?;';
       const subergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.benid], function (err, result) {
         if (err) {
           let message = 'Error';
@@ -36,15 +36,29 @@ async function AssignAdminToFamily(AssignAdminToFamily){
         return {message};
       // ansonsten entferne ihn    
       } else {
-        var sql = 'DELETE FROM `FamilienAdmin` WHERE `FamID` = ? AND `BenID` = ?;'; 
-        const unassignergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.BenID], function (err, result) {
+
+        // prüfe zuvor, ob noch ein Admin verbleiben würde
+        var sql = 'SELECT count(*) AS Anzahl FROM `FamilienAdmin` WHERE `FamID` = ?;';
+        const adminergebnis = await db.query(sql, [AssignAdminToFamily.famid], function (err, result) {
           if (err) {
             let message = 'Error';
             return {message};
-          };
+            };
         });
-        let message = 'Deleted';
-        return {message};
+        if (adminergebnis.Anzahl > 1){
+          var sql = 'DELETE FROM `FamilienAdmin` WHERE `FamID` = ? AND `BenID` = ?;'; 
+          const unassignergebnis = await db.query(sql, [AssignAdminToFamily.famid, AssignAdminToFamily.BenID], function (err, result) {
+            if (err) {
+              let message = 'Error';
+              return {message};
+            };
+          });
+          let message = 'Deleted';
+          return {message};
+        } else {
+          let message = 'Cant_Delete_Last_Admin';
+          return {message};
+        }
       }  
     }
   } else {
