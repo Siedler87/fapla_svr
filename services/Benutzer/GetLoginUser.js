@@ -5,7 +5,7 @@ async function GetLoginUser(GetLoginUser){
   // current date
 
   let CurrentTimestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  var sql = 'SELECT `BenID`, `Vorname`, `Nachname`, `Geburtsdatum`, `Email`, `Passwort`, `Hintergrundfarbe`, `Bilder`.`Pfad` FROM `Benutzer` LEFT JOIN `Bilder` ON `Bilder`.`BildID` = `Benutzer`.`BildID` WHERE `Accountname` =  ?;';
+  var sql = 'SELECT `Benutzer`.`BenID`, `Benutzer`.`Vorname`, `Benutzer`.`Nachname`, `Benutzer`.`Geburtsdatum`, `Benutzer`.`Email`, `Benutzer`.`Passwort`, `Benutzer`.`Hintergrundfarbe`, `Bilder`.`Pfad`, "H" as `Accounttyp`, `Altersstufen`.`Von`, `Altersstufen`.`Bis`,`Altersstufen`.`Zeitfenster`,`Altersstufen`.`Darstellung` FROM `Benutzer` LEFT JOIN `Bilder` ON `Bilder`.`BildID` = `Benutzer`.`BildID` LEFT JOIN `BenutzerAltersstufen` on `BenutzerAltersstufen`.`BenID`=`Benutzer`.`BenID` LEFT JOIN `Altersstufen` on `BenutzerAltersstufen`.`AlsID`=`Altersstufen`.`AlsID` WHERE `Accountname` = ?;';
   const ergebnis = await db.query(sql, [GetLoginUser.accountname.trim()], function (err, result) {
     if (err) {
       console.log(err);
