@@ -19,7 +19,7 @@ router.post('/AddNewDates', async function(req, res, next) {
 /* GetAllDatesForUserFamily - alle vorhandenen Termine vom Benutzer oder dessen Familie abfragen */
 router.post('/GetAllDatesForUserFamily', async function(req, res, next) {
   try {
-    res.json(await GetAllDatesForUserFamily.GetAllDatesForUserFamily());
+    res.json(await GetAllDatesForUserFamily.GetAllDatesForUserFamily(req.body));
   } catch (err) {
     console.error(`Error while fetching GetAllDatesForUserFamily`, err.message);
     next(err);
