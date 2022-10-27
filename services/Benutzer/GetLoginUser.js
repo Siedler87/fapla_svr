@@ -12,7 +12,6 @@ async function GetLoginUser(GetLoginUser){
       let message = 'Error';
       return {message};
     };
-    
   });
     if (ergebnis.length < 1)  {
       let message = 'Account_not_found';
@@ -34,7 +33,12 @@ async function GetLoginUser(GetLoginUser){
           let email = ergebnis[0].Email;
           let hintergrundfarbe = ergebnis[0].Hintergrundfarbe;
           let pfad = ergebnis[0].Pfad;
-          return {message, benid, vorname, nachname, geburtsdatum, email, hintergrundfarbe, pfad};
+          let accounttyp = ergebnis[0].Accounttyp;
+          let von = ergebnis[0].Von;
+          let bis = ergebnis[0].Bis;
+          let zeitfenster = ergebnis[0].Zeitfenster;
+          let darstellung = ergebnis[0].Darstellung;
+          return {message, benid, vorname, nachname, geburtsdatum, email, hintergrundfarbe, pfad, accounttyp, von, bis, zeitfenster, darstellung};
 
       } else {
         let message = 'Password_wrong';
