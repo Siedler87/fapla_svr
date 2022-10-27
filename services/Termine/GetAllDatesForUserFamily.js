@@ -5,13 +5,20 @@ async function GetAllDatesForUserFamily(GetAllDatesForUserFamily){
     if (GetAllDatesForUserFamily.benid == undefined || GetAllDatesForUserFamily.benid == null) { GetAllDatesForUserFamily.benid = 0; }
     if (GetAllDatesForUserFamily.famid == undefined || GetAllDatesForUserFamily.famid == null) { GetAllDatesForUserFamily.famid = 0; }
     var sql = 'SELECT `Benutzer`.`BenID` FROM `Benutzer`  where `Benutzer`.`BenID` = ?';
-    const vorergebnis = await db.query(sql, [GetAllDatesForUserFamily.benid], function (err, result) {
+    const benergebnis = await db.query(sql, [GetAllDatesForUserFamily.benid], function (err, result) {
       if (err) {
         let message = 'Error';
         return {message};
       };
     });
-    if (vorergebnis.length < 1) {
+    var sql = 'SELECT Familien`.`FamID` FROM `Familien` where `Familien`.`FamID` = ?';
+    const famergebnis = await db.query(sql, [GetAllDatesForUserFamily.famid], function (err, result) {
+      if (err) {
+        let message = 'Error';
+        return {message};
+      };
+    });
+    if (benergebnis.length < 1 && famergebnis.length < 1) {
       let message = 'Acc_not_found';
       return {message};
     } else {
