@@ -2,6 +2,8 @@ const db = require('../db');
 
 async function GetAllDatesForUserFamily(GetAllDatesForUserFamily){
   if ((GetAllDatesForUserFamily.benid != undefined && GetAllDatesForUserFamily.benid != null) || (GetAllDatesForUserFamily.famid != undefined && GetAllDatesForUserFamily.famid != null)){
+    if (GetAllDatesForUserFamily.benid == undefined || GetAllDatesForUserFamily.benid == null) { GetAllDatesForUserFamily.benid = 0; }
+    if (GetAllDatesForUserFamily.famid == undefined || GetAllDatesForUserFamily.famid == null) { GetAllDatesForUserFamily.famid = 0; }
     var sql = 'SELECT `Benutzer`.`BenID` FROM `Benutzer`  where `Benutzer`.`BenID` = ?';
     const vorergebnis = await db.query(sql, [GetAllDatesForUserFamily.benid], function (err, result) {
       if (err) {
