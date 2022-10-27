@@ -11,7 +11,7 @@ async function GetAllDatesForUserFamily(GetAllDatesForUserFamily){
         return {message};
       };
     });
-    var sql = 'SELECT Familien`.`FamID` FROM `Familien` where `Familien`.`FamID` = ?';
+    var sql = 'SELECT `Familien`.`FamID` FROM `Familien` where `Familien`.`FamID` = ?';
     const famergebnis = await db.query(sql, [GetAllDatesForUserFamily.famid], function (err, result) {
       if (err) {
         let message = 'Error';
